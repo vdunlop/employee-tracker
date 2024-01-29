@@ -71,32 +71,31 @@ db.connect(function (err) {
 
 function init() {
   //let selection = mainMenu();
-  const selection = "View All Employees";
+  const selection = "View All Departments";
   console.log("after main menu");
   console.log(selection);
   // Execute the main menu selection
   switch (selection) {
     case "View All Employees":
-      console.log("in switch view all employees");
       viewAllEmployees(db);
       break;
     case "Add Employee":
-      addEmployee();
+      addEmployee(db);
       break;
     case "Update Employee Role":
-      updateEmployeeRole();
+      updateEmployeeRole(db);
       break;
     case "View All Roles":
-      viewAllRoles();
+      viewAllRoles(db);
       break;
     case "Add Role":
-      addRole();
+      addRole(db);
       break;
     case "View All Departments":
-      viewAllDepartments();
+      viewAllDepartments(db);
       break;
     case "Add Department":
-      addDepartment();
+      addDepartment(db);
       break;
     case "Quit":
         return;
