@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "ascii-art": "^2.8.5",
     "inquirer": "8.2.4",
     "mysql2": "^3.9.0"
   },
@@ -10,7 +11,6 @@
   "description": "## Description The employee tracker is a content management system (CMS). It is a command-line application that can be used to manage a company's employee database.",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vdunlop/employee-tracker.git"

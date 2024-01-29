@@ -14,6 +14,9 @@ const fs = require("fs");
 // Inquirer for user input.
 const inquirer = require("inquirer");
 
+// Ascii-art for displaying the initial heading.
+const art = require("ascii-art");
+
 // express for middleware
 //const express = require('express');
 // mysql2 for connection with the database
@@ -70,38 +73,51 @@ db.connect(function (err) {
 }*/
 
 function init() {
-  //let selection = mainMenu();
-  const selection = "View All Departments";
-  console.log("after main menu");
-  console.log(selection);
-  // Execute the main menu selection
-  switch (selection) {
-    case "View All Employees":
-      viewAllEmployees(db);
-      break;
-    case "Add Employee":
-      addEmployee(db);
-      break;
-    case "Update Employee Role":
-      updateEmployeeRole(db);
-      break;
-    case "View All Roles":
-      viewAllRoles(db);
-      break;
-    case "Add Role":
-      addRole(db);
-      break;
-    case "View All Departments":
-      viewAllDepartments(db);
-      break;
-    case "Add Department":
-      addDepartment(db);
-      break;
-    case "Quit":
-        return;
-    default:
-      console.error("Invalid selection.");
-  }
+  const isQuit = false; // Don't stop asking for input until Quit is selected
+
+  // Display app name
+  const tempStr = art.font("Welcome!", 'Doom', (err, rendered) => {
+    console.log(rendered);
+  });
+
+  // Continue prompting the user with main menu selections until they choose Quit.
+  //while (!isQuit) {
+
+    // Prompt user for a selection
+    //let selection = mainMenu();
+
+    const selection = "View All Departments";  // test code
+    console.log("after main menu");
+    console.log(selection);
+    // Execute the main menu selection
+    switch (selection) {
+      case "View All Employees":
+        viewAllEmployees(db);
+        break;
+      case "Add Employee":
+        addEmployee(db);
+        break;
+      case "Update Employee Role":
+        updateEmployeeRole(db);
+        break;
+      case "View All Roles":
+        viewAllRoles(db);
+        break;
+      case "Add Role":
+        addRole(db);
+        break;
+      case "View All Departments":
+        viewAllDepartments(db);
+        break;
+      case "Add Department":
+        addDepartment(db);
+        break;
+      case "Quit":
+        isQuit = true;
+      default:
+        console.error("Invalid selection.");
+    }
+  //}
   return;
 }
 
