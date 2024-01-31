@@ -1,3 +1,9 @@
+// Helper functions for providing db data to build SQL
+const {
+    getRoleDropDown,
+    getEmployeeDropDown,
+} = require("./Helpers/dbutils");
+
 function updateEmployeeRole(db) {
 
     // Get the role drop down values

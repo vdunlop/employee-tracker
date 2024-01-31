@@ -27,18 +27,31 @@ const getManagerDropDown = (db) => {
 };
 
 /**
- * Function to get the next employee id
+ * Function to get the department drop down values (list of current departments in the db)
  * @param {object} db 
- * @returns {integer} nextEmployeeId
+ * @returns {object} array of departments
  */
-// Get a new employee id
-const getNextEmployeeId = (db) => {
-  let nextEmployeeId = 0;
+const getDepartmentDropDown = (db) => {
+  let departmentId = 0;
 
-  // Get the number of records in the employee table.
-  
-  // Set nextEmployeeId to number of records in the employee table plus 1.
-  return(nextEmployeeId);
+  // Get departments from db and prompt user to choose one.
+
+  // Set departmentId.
+  return(departmentId);
 };
 
-module.exports = { getRoleDropDown, getManagerDropDown, getNextEmployeeId };
+/**
+ * Function to get the employee drop down values (list of current employees in the db)
+ * @param {object} db 
+ * @returns {integer} employeeId
+ */
+const getEmployeeDropDown = (db) => {
+  let employeeId = 0;
+
+  // Get employees from db and prompt user to choose one.
+  
+  // Set employeeId 
+  return(employeeId);
+};
+
+module.exports = { getRoleDropDown, getManagerDropDown, getDepartmentDropDown, getEmployeeDropDown };

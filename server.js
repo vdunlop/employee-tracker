@@ -77,9 +77,9 @@ function processResponse(response) {
 
 // Function mainMenu: prompt with the main menu questions of what a user would like to do.
 // Prompt for main menu questions
-async function mainMenu() {
+/*async function mainMenu() {
   try {
-    const response = await inquirer.prompt({
+    const response = await inquirer.prompt([{
       type: "list",
       message: "What would you like to do?",
       choices: [
@@ -97,24 +97,40 @@ async function mainMenu() {
   } catch (error) {
     console.error(error);
   }
-}
+}*/
+function mainMenu() {
+    inquirer.prompt([
+      {
+      type: "list",
+      message: "What would you like to do?",
+      choices: [
+        "View All Employees",
+        "Add Employee",
+        "Update Employee Role",
+        "View All Roles",
+        "Add Role",
+        "View All Departments",
+        "Add Department",
+      ],
+      name: "selection",
+    },
+    ])
+  .then((response) => 
+  processResponse(response))
+};
 
 // Function header: displays the main header for the app
-async function displayHeader() {
+function displayHeader() {
   // Display initial header
-  try {
-    const tempStr = await art.font("Welcome!", "Doom", (err, rendered) => {
+    art.font("Welcome!", "Doom", (err, rendered) => {
       console.log(rendered);
     });
-  } catch (error) {
-    console.error(error);
   }
-}
 
 // Init function: initialize the screen with a header type message.
 // Control the looping of the main menu to continue the employee-tracker or
 // exit when quit is entered.
-async function init() {
+function init() {
   // Display the application's greeting
   displayHeader();
 
