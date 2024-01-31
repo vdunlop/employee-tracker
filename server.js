@@ -39,12 +39,8 @@ db.connect(function (err) {
 // Process the selection from the main menu
 function processResponse(response) {
   // get the selection out of the inquirer response to process
-  let selection = response.selection;
-  // selection = "View All Roles";  // test code
-  console.log("in processResponse");
-  console.log(selection);
-  //selection = "View All Roles"; // test code
-
+  const selection = response.selection;
+ 
   // Execute the main menu selection
   switch (selection) {
     case "View All Employees":
@@ -71,7 +67,6 @@ function processResponse(response) {
     default:
       console.error("Invalid selection.");
   }
-  //}
   return;
 }
 
@@ -135,7 +130,9 @@ function init() {
   displayHeader();
 
   // Display main menu and start processing
-  mainMenu();
+  setTimeout(() => {  mainMenu(); }, 1000);
+
+  //mainMenu();
   return;
 }
 

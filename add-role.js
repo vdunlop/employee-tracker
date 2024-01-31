@@ -1,29 +1,67 @@
 // Helper functions for providing db data to build SQL
-const { getDepartmentDropDown 
-} = require("./Helpers/dbutils");
+const { getDepartmentDropDown } = require("./Helpers/dbutils");
+
+// Inquirer for user input.
+const inquirer = require("inquirer");
 
 function addRole(db) {
-  let roleName = "";
+  let departmentList = [];  // used for the department drop down list in the inquirer prompt
 
-  // Prompt for role name
-  roleName = "Groundskeeper";
+  // get role names for drop down in the inquire.prompt
+  const selectAllDepartments = 'SELECT * FROM department;';
 
-  // Prompt for salary
-  let salary = 22000;
+  db.query(selectAllDepartments, function (err, results) {
+    if (err) {
+      console.error(err);
+    } else {
 
-  // Prompt for department name (need id)
-  //const departmentId = getDepartmentDropDown(db);
-  const departmentId = 9;
+// parse out the department names
+      for (let i = 0; i < results.length; i++) {
+        departmentList[i] = results[i].department_name;
+      }
 
-  // Build the query
-  const addNewRole = `INSERT INTO role(title, salary, department_id) VALUES ("${roleName}", ${salary}, ${departmentId});`;
-  console.log(addNewRole);
+  // Prompt for role name, salary and department
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of the role?",
+        name: "roleName",
+      },
+      {
+        type: "input",
+        message: "What is the salary for this role (format xxxxxx)?",
+        name: "salary",
+      },
+      {
+        type: "list",
+        message: "Which department does the role belong to?",
+        name: "departmentName",
+        choices: departmentList,
+      },
+    ])
+    .then((responses) => {
 
-  db.query(addNewRole, function (err, results) {
-    err ? console.error(err) : console.table(results);
-  });
-  console.log("In addRole");
-  console.log(`Added Role ${roleName} to the database`);
-}
+      // get departmentId from the query results that matches
+      // the departmentName chosen in the inquirer prompt
+      let departmentId = 0;
+      for (let i = 0; i < results.length; i++) {
+        if (responses.departmentName === results[i].department_name) {
+          departmentId = results[i].id;
+          break;
+        }
+      }
+
+      // Build the query
+      const addNewRole = `INSERT INTO role(title, salary, department_id) VALUES ("${responses.roleName}", ${responses.salary}, ${departmentId});`;
+
+      db.query(addNewRole, function (err, results) {
+        err
+          ? console.error(err)
+          : console.log(`Added role ${responses.roleName} to the database`);
+      });
+    });
+    }});
+  }
 
 module.exports = { addRole };

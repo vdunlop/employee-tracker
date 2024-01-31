@@ -1,6 +1,6 @@
 function viewAllDepartments(db) {
-    const selectAllEmployees = 'SELECT * FROM department;';
-    db.query(selectAllEmployees, function (err, results) {
+    const selectAllDepartments = 'SELECT * FROM department;';
+    db.query(selectAllDepartments, function (err, results) {
         err ? console.error(err) : console.table(results);
     })
     console.log("In viewAllDepartments");

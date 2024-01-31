@@ -20,6 +20,6 @@ function addDepartment(db) {
       });
 //      console.log(`Added department ${response.deptName} to the database`);
     });
-}
+};
 
 module.exports = { addDepartment };
