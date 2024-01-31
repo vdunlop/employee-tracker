@@ -4,7 +4,12 @@
  * @returns {object} array of roles
  */
 const getRoleDropDown = (db) => {
-  let roleArr = [];
+  let roleId = 0;
+
+  // Get roles from db and prompt user to choose one.
+
+  // Set roleId.
+  return(roleId);
 };
 
 /**
@@ -13,7 +18,12 @@ const getRoleDropDown = (db) => {
  * @returns {object} array of managers
  */
 const getManagerDropDown = (db) => {
-  let managerArr = [];
+  let managerId = 0;
+
+  // Get managers from db and prompt user to choose one.
+
+  // Set managerId.
+  return(managerId);
 };
 
 /**
@@ -24,6 +34,11 @@ const getManagerDropDown = (db) => {
 // Get a new employee id
 const getNextEmployeeId = (db) => {
   let nextEmployeeId = 0;
+
+  // Get the number of records in the employee table.
+  
+  // Set nextEmployeeId to number of records in the employee table plus 1.
+  return(nextEmployeeId);
 };
 
 module.exports = { getRoleDropDown, getManagerDropDown, getNextEmployeeId };

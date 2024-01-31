@@ -1,4 +1,4 @@
-// Import selection functions
+// Import processing selection functions
 const { viewAllEmployees } = require("./view-all-employees.js");
 const { viewAllDepartments } = require("./view-all-departments.js");
 const { viewAllRoles } = require("./view-all-roles.js");
@@ -17,15 +17,8 @@ const inquirer = require("inquirer");
 // Ascii-art for displaying the initial heading.
 const art = require("ascii-art");
 
-// express for middleware
-//const express = require('express');
 // mysql2 for connection with the database
 const mysql = require("mysql2");
-//const PORT = process.env.PORT || 3001;
-//const app = express();
-
-//appendFile.use(express.urlencoded({ extended: false}));
-//appendFile.use(express.json());
 
 // Connect to database
 const db = mysql.createConnection(
@@ -42,10 +35,51 @@ db.connect(function (err) {
   if (err) throw err;
 });
 
+// Function processResponse: process the selection that came from the inquirer prompt.
+// Process the selection from the main menu
+function processResponse(response) {
+  // get the selection out of the inquirer response to process
+  let selection = response.selection;
+  // selection = "View All Roles";  // test code
+  console.log("in processResponse");
+  console.log(selection);
+  //selection = "View All Roles"; // test code
+
+  // Execute the main menu selection
+  switch (selection) {
+    case "View All Employees":
+      viewAllEmployees(db);
+      break;
+    case "Add Employee":
+      addEmployee(db);
+      break;
+    case "Update Employee Role":
+      updateEmployeeRole(db);
+      break;
+    case "View All Roles":
+      viewAllRoles(db);
+      break;
+    case "Add Role":
+      addRole(db);
+      break;
+    case "View All Departments":
+      viewAllDepartments(db);
+      break;
+    case "Add Department":
+      addDepartment(db);
+      break;
+    default:
+      console.error("Invalid selection.");
+  }
+  //}
+  return;
+}
+
+// Function mainMenu: prompt with the main menu questions of what a user would like to do.
 // Prompt for main menu questions
-/*async function mainMenu() {
-  await inquirer
-    .prompt({
+async function mainMenu() {
+  try {
+    const response = await inquirer.prompt({
       type: "list",
       message: "What would you like to do?",
       choices: [
@@ -58,71 +92,35 @@ db.connect(function (err) {
         "Add Department",
       ],
       name: "selection",
-    })
-    .then((response) => {
-      //console.log("in response")
-      //console.log(response);
-      //console.log(response.selection);
-      return response.selection;
-    })
-    .catch((error) => {
-      if (err) {
-        console.error(err);
-      }
     });
-}*/
+    processResponse(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-function init() {
-  const isQuit = false; // Don't stop asking for input until Quit is selected
+// Function header: displays the main header for the app
+async function displayHeader() {
+  // Display initial header
+  try {
+    const tempStr = await art.font("Welcome!", "Doom", (err, rendered) => {
+      console.log(rendered);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-  // Display app name
-  const tempStr = art.font("Welcome!", 'Doom', (err, rendered) => {
-    console.log(rendered);
-  });
+// Init function: initialize the screen with a header type message.
+// Control the looping of the main menu to continue the employee-tracker or
+// exit when quit is entered.
+async function init() {
+  // Display the application's greeting
+  displayHeader();
 
-  // Continue prompting the user with main menu selections until they choose Quit.
-  //while (!isQuit) {
-
-    // Prompt user for a selection
-    //let selection = mainMenu();
-
-    const selection = "View All Departments";  // test code
-    console.log("after main menu");
-    console.log(selection);
-    // Execute the main menu selection
-    switch (selection) {
-      case "View All Employees":
-        viewAllEmployees(db);
-        break;
-      case "Add Employee":
-        addEmployee(db);
-        break;
-      case "Update Employee Role":
-        updateEmployeeRole(db);
-        break;
-      case "View All Roles":
-        viewAllRoles(db);
-        break;
-      case "Add Role":
-        addRole(db);
-        break;
-      case "View All Departments":
-        viewAllDepartments(db);
-        break;
-      case "Add Department":
-        addDepartment(db);
-        break;
-      case "Quit":
-        isQuit = true;
-      default:
-        console.error("Invalid selection.");
-    }
-  //}
+  // Display main menu and start processing
+  mainMenu();
   return;
 }
 
 init();
-
-//app.listen(PORT, () => {
-//    console.log(`Server running on port ${PORT}`);
-//});

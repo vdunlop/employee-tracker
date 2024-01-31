@@ -8,7 +8,7 @@ SELECT * FROM role;
 SELECT * FROM employee;
 
 -- show role title and department and emp info for all employee
-SELECT employee.id, employee.first_name, employee.last_name, role.title, department.department_name
+SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department_name
 FROM employee
 LEFT JOIN role ON role.id=employee.role_id
 LEFT JOIN department ON department.id=role.department_id;
