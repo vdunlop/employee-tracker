@@ -13,6 +13,11 @@ FROM employee
 LEFT JOIN role ON role.id=employee.role_id
 LEFT JOIN department ON department.id=role.department_id;
 
+-- select from employee and show manager last_name
+SELECT e1.id, e1.first_name, e1.last_name, e1.manager_id, e2.id, e2.first_name, e2.last_name
+FROM employee e1
+LEFT JOIN employee e2 ON e2.id=e1.manager_id;
+
 -- select role title, department and role info for all roles
 SELECT role.id, role.title, role.salary, department.department_name
 FROM role
