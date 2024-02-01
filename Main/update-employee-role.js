@@ -18,7 +18,6 @@ function updateEmployeeRole(db) {
       for (let i = 0; i < roleResults.length; i++) {
         roleList[i] = roleResults[i].title;
       }
-      console.log(roleList);
 
       // Get the employee drop down values
       //const employeeId = getemployeeDropDown(db);
@@ -36,7 +35,6 @@ function updateEmployeeRole(db) {
               " " +
               employeeResults[i].last_name;
           }
-          console.log(employeeList);
 
           // Prompt for the employee and role
           inquirer
@@ -56,7 +54,6 @@ function updateEmployeeRole(db) {
               },
             ])
             .then((responses) => {
-              console.log(responses);
               // get roleId from the query results that matches
               // the roleName chosen in the inquirer prompt
               let roleId = 0;
@@ -84,14 +81,10 @@ function updateEmployeeRole(db) {
 
               // Build the query
               const updateEmployeeRole = `UPDATE employee SET role_id = ${roleId} WHERE id = ${employeeId};`;
-              console.log(updateEmployeeRole);
               db.query(updateEmployeeRole, function (err, finalResults) {
-                err ? console.error(err) : console.table(finalResults);
+                err ? console.error(err) : console.log(`Updated ${responses.employeeName}'s role in the database`);
               });
-              console.log("In updateEmployee");
-              console.log(
-                `Updated ${responses.employeeName}'s role in the database`
-              );
+              
             }); // .then inquirer prompt
         }
       }); // else for employee

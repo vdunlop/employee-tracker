@@ -1,11 +1,11 @@
 // Import processing selection functions
-const { viewAllEmployees } = require("./view-all-employees.js");
-const { viewAllDepartments } = require("./view-all-departments.js");
-const { viewAllRoles } = require("./view-all-roles.js");
-const { updateEmployeeRole } = require("./update-employee-role.js");
-const { addDepartment } = require("./add-department.js");
-const { addEmployee } = require("./add-employee.js");
-const { addRole } = require("./add-role.js");
+const { viewAllEmployees } = require("./Main/view-all-employees.js");
+const { viewAllDepartments } = require("./Main/view-all-departments.js");
+const { viewAllRoles } = require("./Main/view-all-roles.js");
+const { updateEmployeeRole } = require("./Main/update-employee-role.js");
+const { addDepartment } = require("./Main/add-department.js");
+const { addEmployee } = require("./Main/add-employee.js");
+const { addRole } = require("./Main/add-role.js");
 
 // Include packages:
 // Standard library package for reading and writing files.
@@ -40,7 +40,7 @@ db.connect(function (err) {
 function processResponse(response) {
   // get the selection out of the inquirer response to process
   const selection = response.selection;
- 
+
   // Execute the main menu selection
   switch (selection) {
     case "View All Employees":
@@ -73,33 +73,39 @@ function processResponse(response) {
 // Function mainMenu: prompt with the main menu questions of what a user would like to do.
 // Prompt for main menu questions
 function mainMenu() {
-    inquirer.prompt([
+  inquirer
+    .prompt([
       {
-      type: "list",
-      message: "What would you like to do?",
-      choices: [
-        "View All Employees",
-        "Add Employee",
-        "Update Employee Role",
-        "View All Roles",
-        "Add Role",
-        "View All Departments",
-        "Add Department",
-      ],
-      name: "selection",
-    },
+        type: "list",
+        message: "What would you like to do?",
+        choices: [
+          "View All Employees",
+          "Add Employee",
+          "Update Employee Role",
+          "View All Roles",
+          "Add Role",
+          "View All Departments",
+          "Add Department",
+        ],
+        name: "selection",
+      },
     ])
-  .then((response) => 
-  processResponse(response))
-};
+    .then((response) => processResponse(response));
+}
 
 // Function header: displays the main header for the app
 function displayHeader() {
   // Display initial header
-    art.font(`Employee/nTracker`, "Doom", (err, rendered) => {
-      console.log(rendered);
-    });
-  }
+  art.font(`Employee`, "Doom", (err, rendered) => {
+    console.log(rendered);
+  });
+
+  setTimeout(() => {
+    art.font(`Tracker`, "Doom", (err, rendered) => {
+    console.log(rendered);
+  });
+});
+}
 
 // Init function: initialize the screen with a header type message.
 // Control the looping of the main menu to continue the employee-tracker or
@@ -109,7 +115,9 @@ function init() {
   displayHeader();
 
   // Display main menu and start processing
-  setTimeout(() => {  mainMenu(); }, 500);
+  setTimeout(() => {
+    mainMenu();
+  }, 500);
 
   //mainMenu();
   return;

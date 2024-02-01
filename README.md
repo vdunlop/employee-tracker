@@ -59,33 +59,49 @@ Note Taker save note example
 
 ## Installation-Execution
 
-Open a command terminal, go to the note-taker folder and execute server.js using the command "node server.js". This will start your server.
+Open a command terminal, go to the employee-tracker folder.
 
-Open a browser and type localhost:3001.
+Open mysql and create the database and seed it:
 
-The browser will open the main screen for Note Taker. Click on <Get Started>.
+1. mysql -uroot -p
 
-Once you are in the notes list screen, you can do the following:
+2. source db/schema.sql
 
-1. Type in a Note Title and Note Text and click <Save Note> to create a note.
+3. source db/seeds.sql
 
-2. Type in a Note Title and Note Text and click on <Clear> to clear out what you've typed.
+Quit mysql and start the employee-tracker:
 
-3. Click on an existing note to have it show on the right side screen with details. You will also see the <New Note> button appear.
+node server.js
 
-4. Click on the "delete" symbol next to any note and it will be deleted and the left side list will be updated.
+Once you are in the Employee Tracker cli interface, you can do the following:
+
+1. View All Employees will display a table showing the employee's id, first and last name, role (job title), salary, department and manager's first and last name.
+
+2. View All Departments will display a table showing department ids and names.
+
+3. View All Roles will display a table showing role ids, names (titles) and the department that the role belongs too, along with the salary.
+
+4. Add An Employee will prompt for the new employee's first and last name, role, and manager name. This information will be stored in the database under the new employee.
+
+5. Add a Role will prompt for the new role's name (title) and the salary and title that go with that role. This information will be stored in the database under the new role.
+
+6. Add a Department will prompt for the new department's name. This information will be stored in the database under the new department.
+
+7. Update Employee's role will prompt for the employee to update and the role to update the employee to. This information will be updated stored in the database.
+
+Enter <ctrl>C to quit.
 
 ## Usage
 
-The Note Taker app can be used to keep track of your to do list. You can add your to-do item (like washing the car) along with a title. You can also delete items off of your list as you complete them. Your items with their titles will be saved in a local file on your computer, so that if you exit out of the app and then go back in, your list will still be accurate.
+The employee tracker is a content management system (CMS). It is a command-line application that can be used to manage a small company's employee database.
+
+At this time, there are many more options that can be added to this app to make it more flexible as a small CRM. 
 
 ## Testing
 N/A
 
 ## Credits
 N/A
-inquirer with async/await
-https://gist.github.com/midnightcodr/bd8f9cd4414f5571774c141d1e0865d8
 
 ## License
 N/A

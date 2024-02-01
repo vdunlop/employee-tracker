@@ -6,8 +6,6 @@ function addEmployee(db) {
   let managerList = []; // used for the managers drop down list in the inquirer prompt
 
   // Get the role drop down values
-  //const roleId = getRoleDropDown(db);
-  const roleId = 1;
   const selectAllRoles = "SELECT * FROM role;";
 
   db.query(selectAllRoles, function (err, roleResults) {
@@ -18,7 +16,6 @@ function addEmployee(db) {
       for (let i = 0; i < roleResults.length; i++) {
         roleList[i] = roleResults[i].title;
       }
-      console.log(roleList);
 
       // Get the manager drop down values
       //const managerId = getManagerDropDown(db);
@@ -33,7 +30,6 @@ function addEmployee(db) {
           for (let i = 0; i < managerResults.length; i++) {
             managerList[i] = managerResults[i].first_name + " " + managerResults[i].last_name;
           }
-          console.log(managerList);
 
           // Prompt for the first and last name, role and manager
           inquirer
@@ -62,7 +58,6 @@ function addEmployee(db) {
               },
             ])
             .then((responses) => {
-                console.log(responses);
               // get roleId from the query results that matches
               // the roleName chosen in the inquirer prompt
               let roleId = 0;
@@ -87,12 +82,9 @@ function addEmployee(db) {
 
               // Build the query
               const addNewEmployee = `INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${responses.firstName}", "${responses.lastName}", ${roleId}, ${managerId});`;
-              console.log(addNewEmployee);
               db.query(addNewEmployee, function (err, finalResults) {
-                err ? console.error(err) : console.table(finalResults);
+                err ? console.error(err) : console.log(`Added ${responses.firstName} ${responses.lastName} to the database`);
               });
-              console.log("In addEmployee");
-              console.log(`Added ${responses.firstName} ${responses.lastName} to the database`);
             }); // .then inquirer prompt
         }
       }); // else for manager

@@ -4,7 +4,6 @@ function viewAllRoles(db) {
     db.query(selectAllEmployees, function (err, results) {
         err ? console.error(err) : console.table(results);
     })
-    console.log("In viewAllRoles");
 };
 
 module.exports = { viewAllRoles };
