@@ -44,3 +44,16 @@ SET
 role_id = 7
 WHERE
 id = 2;
+
+
+
+
+
+
+'SELECT e1.id, e1.first_name AS "Employee First", e1.last_name AS "Employee Last", role.title AS "Title", role.sa
+lary AS "Salary", department.department_name AS "Department Name", e2.first_name AS "Manager First", e2.last_name AS "Man
+ager Last" 
+FROM employee e1 
+LEFT JOIN role ON role.id=e1.role_id 
+LEFT JOIN department ON department.id=role.department_id 
+LEFT JOIN employee e2 ON e2.id=e1.manager_id;'
