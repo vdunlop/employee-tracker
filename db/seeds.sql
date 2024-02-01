@@ -10,13 +10,13 @@ VALUES
 
 INSERT INTO role (id, title, salary, department_id)
 VALUES 
-(1, "Director", 70000, NULL),
-(2, "Assistant Director", 60000, NULL),
-(3, "Manager", 50000, NULL),
-(4, "Coordinator", 45000, NULL),
-(5, "Specialist", 40000, NULL),
-(6, "Administrators", 30000, NULL),
-(7, "Worker Bees", 20000, NULL);
+(1, "Director", 70000, 1),
+(2, "Assistant Director", 60000, 4),
+(3, "Manager", 50000, 5),
+(4, "Coordinator", 45000, 3),
+(5, "Specialist", 40000, 3),
+(6, "Administrators", 30000, 3),
+(7, "Worker Bees", 20000, 5);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES
