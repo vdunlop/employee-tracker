@@ -72,27 +72,6 @@ function processResponse(response) {
 
 // Function mainMenu: prompt with the main menu questions of what a user would like to do.
 // Prompt for main menu questions
-/*async function mainMenu() {
-  try {
-    const response = await inquirer.prompt([{
-      type: "list",
-      message: "What would you like to do?",
-      choices: [
-        "View All Employees",
-        "Add Employee",
-        "Update Employee Role",
-        "View All Roles",
-        "Add Role",
-        "View All Departments",
-        "Add Department",
-      ],
-      name: "selection",
-    });
-    processResponse(response);
-  } catch (error) {
-    console.error(error);
-  }
-}*/
 function mainMenu() {
     inquirer.prompt([
       {
@@ -117,7 +96,7 @@ function mainMenu() {
 // Function header: displays the main header for the app
 function displayHeader() {
   // Display initial header
-    art.font("Welcome!", "Doom", (err, rendered) => {
+    art.font(`Employee/nTracker`, "Doom", (err, rendered) => {
       console.log(rendered);
     });
   }
@@ -130,7 +109,7 @@ function init() {
   displayHeader();
 
   // Display main menu and start processing
-  setTimeout(() => {  mainMenu(); }, 1000);
+  setTimeout(() => {  mainMenu(); }, 500);
 
   //mainMenu();
   return;

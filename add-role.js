@@ -1,13 +1,10 @@
-// Helper functions for providing db data to build SQL
-const { getDepartmentDropDown } = require("./Helpers/dbutils");
-
 // Inquirer for user input.
 const inquirer = require("inquirer");
 
 function addRole(db) {
   let departmentList = [];  // used for the department drop down list in the inquirer prompt
 
-  // get role names for drop down in the inquire.prompt
+  // get department names for drop down in the inquire.prompt
   const selectAllDepartments = 'SELECT * FROM department;';
 
   db.query(selectAllDepartments, function (err, results) {

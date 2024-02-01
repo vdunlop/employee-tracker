@@ -1,8 +1,5 @@
-// Helper functions for providing db data to build SQL
-const {
-    getRoleDropDown,
-    getEmployeeDropDown,
-} = require("./Helpers/dbutils");
+// Inquirer for user input.
+const inquirer = require("inquirer");
 
 function updateEmployeeRole(db) {
 
