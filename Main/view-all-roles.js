@@ -1,9 +1,16 @@
-function viewAllRoles(db) {
-    const selectAllEmployees = 'SELECT role.id, role.title AS "Title", role.salary AS "Salary", department.department_name AS "Department" FROM role LEFT JOIN department on department.id = role.department_id;';
+//const { temp } = require("./mainmenu");
 
-    db.query(selectAllEmployees, function (err, results) {
-        err ? console.error(err) : console.table(results);
-    })
-};
+function viewAllRoles(db) {
+  const selectAllRoles =
+    'SELECT role.id, role.title AS "Title", role.salary AS "Salary", department.department_name AS "Department" FROM role LEFT JOIN department on department.id = role.department_id;';
+ // db.promise().query(selectAllEmployees
+ //   )
+ //   .then(([rows]) => console.table(rows));
+//    .then(() => temp());
+db.query(selectAllRoles, function (err, responses) {
+  err ? console.error(err) : console.table(responses);
+})
+
+}
 
 module.exports = { viewAllRoles };

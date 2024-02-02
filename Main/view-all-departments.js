@@ -1,8 +1,12 @@
+const { temp } = require("./mainmenu.js");
+
 function viewAllDepartments(db) {
-    const selectAllDepartments = 'SELECT department.id, department.department_name AS "Department" FROM department;';
-    db.query(selectAllDepartments, function (err, results) {
-        err ? console.error(err) : console.table(results);
-    })
-};
+  const selectAllDepartments =
+    'SELECT department.id, department.department_name AS "Department" FROM department;';
+  db.promise().query(selectAllDepartments
+  )
+  .then(([rows]) => console.table(rows))
+  .then(() => temp());
+}
 
 module.exports = { viewAllDepartments };
