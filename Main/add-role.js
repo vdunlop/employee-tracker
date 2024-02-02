@@ -1,6 +1,11 @@
 // Inquirer for user input.
 const inquirer = require("inquirer");
 
+// Function: addRole
+// prompts for role name, department and salary that correlate with the role
+// inserts into sql
+//
+// parameter: db - current database running
 function addRole(db) {
   let departmentList = [];  // used for the department drop down list in the inquirer prompt
 

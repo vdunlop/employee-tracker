@@ -1,6 +1,12 @@
 // Inquirer for user input.
 const inquirer = require("inquirer");
 
+// Function: add Employee
+// prompts for employee first name, last name, role, manager
+// inserts into sql
+//
+// parameter: db - current database running
+
 function addEmployee(db) {
   let roleList = []; // used for the roles drop down list in the inquirer prompt
   let managerList = []; // used for the managers drop down list in the inquirer prompt
@@ -18,7 +24,6 @@ function addEmployee(db) {
       }
 
       // Get the manager drop down values
-      //const managerId = getManagerDropDown(db);
       const managerId = 2;
       const selectAllManagers = "SELECT * FROM employee;";
 

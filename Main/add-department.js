@@ -1,8 +1,11 @@
-//const { temp } = require("./mainmenu.js");
-
 // Inquirer for user input.
 const inquirer = require("inquirer");
 
+// Function: addDepartment
+// prompts for department name
+// inserts into sql
+//
+// parameter: db - current database running
 function addDepartment(db) {
   // Prompt for department name
   inquirer
@@ -20,7 +23,9 @@ function addDepartment(db) {
       db.query(addNewDept, function (err, results) {
         err ? console.error(err) : console.log(`Added Department ${response.deptName} to the database`);
       });
-     });
+     })
+     
+     ;
     }
         
    

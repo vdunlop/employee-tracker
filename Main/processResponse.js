@@ -1,3 +1,4 @@
+// UNUSED - keep for possible future use
 // Import processing selection functions
 const { viewAllEmployees } = require("./view-all-employees.js");
 const { viewAllDepartments } = require("./view-all-departments.js");

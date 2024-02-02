@@ -1,13 +1,16 @@
 // Inquirer for user input.
 const inquirer = require("inquirer");
 
+// Function: updateEmployeeRole
+// prompts for employee to update and new role
+// inserts into sql
+//
+// parameter: db - current database running
 function updateEmployeeRole(db) {
   let roleList = []; // used for the roles drop down list in the inquirer prompt
   let employeeList = []; // used for the employees drop down list in the inquirer prompt
 
   // Get the role drop down values
-  //const roleId = getRoleDropDown(db);
-  const roleId = 1;
   const selectAllRoles = "SELECT * FROM role;";
 
   db.query(selectAllRoles, function (err, roleResults) {

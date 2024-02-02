@@ -55,7 +55,6 @@ function displayMainMenu(db) {
       },
     ])
     .then((response) => {
-      //       processResponse(db, response);
       // get the selection out of the inquirer response to process
       const selection = response.selection;
 

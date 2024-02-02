@@ -1,4 +1,7 @@
-//const { temp } = require("./mainmenu.js");
+// Function: viewAllEmployees
+// displays all employees in table
+//
+// parameter: db - current database running
 
 function viewAllEmployees(db) {
   const selectAllEmployees =

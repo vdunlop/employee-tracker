@@ -9,10 +9,12 @@ const { addRole } = require("./add-role.js");
 
 const inquirer = require("inquirer");
 
-  // Function displayMainMenu: prompt with the main menu questions of what a user would like to do.
-  // Prompt for main menu questions
+// Function: temp
+// prompts for next action from the main menu list
+// calls the function to carry out the action that was chosen
+//
+// parameter: db - current database running
   function temp(db) {
-    console.log("in temp");
     inquirer
       .prompt([
         {
@@ -61,9 +63,10 @@ const inquirer = require("inquirer");
         console.error("Invalid selection.");
     }
       }) .then((response) => { 
+        // recurse back to this function to display the main menu and process
         setTimeout(() => {
         temp(db);
-      }, 500);
+      }, 1000);
       })
   }
 
