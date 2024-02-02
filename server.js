@@ -90,7 +90,9 @@ function mainMenu() {
         name: "selection",
       },
     ])
-    .then((response) => processResponse(response));
+    .then((response) => {
+       processResponse(response);
+    });
 }
 
 // Function header: displays the main header for the app
@@ -119,8 +121,8 @@ function init() {
     mainMenu();
   }, 500);
 
-  //mainMenu();
   return;
 }
 
 init();
+module.exports = { mainMenu };
