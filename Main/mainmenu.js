@@ -59,25 +59,8 @@ const inquirer = require("inquirer");
       default:
         console.error("Invalid selection.");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //processResponse(db, response);
-      });
+      }) .then((response) => { temp(db);
+      })
   }
+
   module.exports = { temp };

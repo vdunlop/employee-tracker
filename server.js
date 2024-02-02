@@ -6,7 +6,7 @@ const { updateEmployeeRole } = require("./Main/update-employee-role.js");
 const { addDepartment } = require("./Main/add-department.js");
 const { addEmployee } = require("./Main/add-employee.js");
 const { addRole } = require("./Main/add-role.js");
-
+const { temp } = require("./Main/mainmenu.js")
 // Include packages:
 // Standard library package for reading and writing files.
 const fs = require("fs");
@@ -85,8 +85,12 @@ function displayMainMenu(db) {
         default:
           console.error("Invalid selection.");
       }
-    });
-}
+    }) .then((response) => { temp(db);
+    }
+    )
+  };
+
+
 // Function header: displays the main header for the app
 function displayHeader() {
   // Display initial header
