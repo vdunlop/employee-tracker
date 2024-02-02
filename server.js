@@ -85,7 +85,10 @@ function displayMainMenu(db) {
         default:
           console.error("Invalid selection.");
       }
-    }) .then((response) => { temp(db);
+    }) .then((response) => { 
+      setTimeout(() => {
+      temp(db);
+    }, 500);
     }
     )
   };

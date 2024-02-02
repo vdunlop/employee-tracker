@@ -12,6 +12,7 @@ const inquirer = require("inquirer");
   // Function displayMainMenu: prompt with the main menu questions of what a user would like to do.
   // Prompt for main menu questions
   function temp(db) {
+    console.log("in temp");
     inquirer
       .prompt([
         {
@@ -59,7 +60,10 @@ const inquirer = require("inquirer");
       default:
         console.error("Invalid selection.");
     }
-      }) .then((response) => { temp(db);
+      }) .then((response) => { 
+        setTimeout(() => {
+        temp(db);
+      }, 500);
       })
   }
 
