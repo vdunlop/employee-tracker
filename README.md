@@ -47,15 +47,11 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ### Mock-Up
 
-Note Taker get started page
-![note taker start page]()
+Employee Tracker start screen
+![employee tracker start screen](./Assets/emp-trkr-main.png)
 
-Note Taker new note example
-![note taker main page](./Assets/12-sql-homework-demo-01.png)
-
-Note Taker save note example
-![note taker save page](./Assets/12-sql-homework-video-thumbnail.png)
-
+Employee Tracker ERD
+![employee tracker ERD](./Assets/12-sql-homework-demo-01.png)
 
 ## Installation-Execution
 
