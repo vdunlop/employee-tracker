@@ -26,6 +26,7 @@ function addDepartment(db) {
      })
      
      ;
+     return 0;
     }
         
    

@@ -6,7 +6,8 @@ const { updateEmployeeRole } = require("./Main/update-employee-role.js");
 const { addDepartment } = require("./Main/add-department.js");
 const { addEmployee } = require("./Main/add-employee.js");
 const { addRole } = require("./Main/add-role.js");
-const { temp } = require("./Main/mainmenu.js")
+const { temp } = require("./Main/mainmenu.js");
+
 // Include packages:
 // Standard library package for reading and writing files.
 const fs = require("fs");
@@ -34,6 +35,7 @@ const db = mysql.createConnection(
 db.connect(function (err) {
   if (err) throw err;
 });
+
 // Function displayMainMenu: prompt with the main menu questions of what a user would like to do.
 // Prompt for main menu questions
 function displayMainMenu(db) {
@@ -84,14 +86,13 @@ function displayMainMenu(db) {
         default:
           console.error("Invalid selection.");
       }
-    }) .then((response) => { 
+    })
+    .then((response) => {
       setTimeout(() => {
-      temp(db);
-    }, 500);
-    }
-    )
-  };
-
+        temp(db);
+      }, 500);
+    });
+}
 
 // Function header: displays the main header for the app
 function displayHeader() {
@@ -110,7 +111,7 @@ function displayHeader() {
 // Init function: initialize the screen with a header type message.
 // Control the looping of the main menu to continue the employee-tracker or
 // exit when quit is entered.
-async function init() {
+function init() {
   // Display the application's greeting
   displayHeader();
 
@@ -118,9 +119,6 @@ async function init() {
   setTimeout(() => {
     displayMainMenu(db);
   }, 500);
-
 }
-  
-//for (let i=0; i<10; i++){
-  init();
-//}
+
+init();
