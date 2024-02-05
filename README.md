@@ -54,6 +54,7 @@ Employee Tracker ERD
 ![employee tracker ERD](./Assets/12-sql-homework-demo-01.png)
 
 ## Installation-Execution
+Walkthrough video:
 <video width='320' height='240' controls>
 <source src="./Assets/challenge12.mp4" type='video/mp4'>
 </video>
