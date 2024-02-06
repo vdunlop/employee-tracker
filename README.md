@@ -55,6 +55,7 @@ Employee Tracker ERD
 
 ## Installation-Execution
 Walkthrough video:
+
 <video width='320' height='240' controls>
 <source src="./Assets/challenge12.mp4" type='video/mp4'>
 </video>
